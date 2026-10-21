@@ -4,6 +4,7 @@ dist/
 !.env.example
 .npmrc
 server/data/
+release/
 .android-sdk/
 android/.gradle/
 android/build/
