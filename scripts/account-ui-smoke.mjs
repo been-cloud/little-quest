@@ -11,6 +11,7 @@ try {
     let response = {};
     if (path.endsWith('/code')) response = { expiresInSeconds: 600 };
     if (path.endsWith('/register')) { token = 'test-token'; response = { user, token }; }
+    if (path.endsWith('/login')) { token = 'test-token'; response = { user, token }; }
     if (path.endsWith('/me')) response = { user };
     if (path.endsWith('/logout')) { token = ''; response = { ok: true }; }
     await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(response) });
@@ -42,5 +43,11 @@ try {
   await page.reload();
   await page.getByRole('button', { name: '任务', exact: true }).click();
   await page.getByText('跨设备保存验收').first().waitFor();
-  console.log('account registration, migration and restore passed');
+  await page.getByRole('button', { name: '我的账号' }).click();
+  await page.getByRole('button', { name: '退出登录' }).click();
+  await page.getByPlaceholder('例如：你的 QQ 邮箱').fill('tester@qq.com');
+  await page.getByPlaceholder('输入密码').fill('123456');
+  await page.getByRole('button', { name: '登录并恢复数据' }).click();
+  await page.getByText('tester@qq.com', { exact: true }).waitFor();
+  console.log('account registration, migration, restore and existing short-password login passed');
 } finally { await browser.close(); }

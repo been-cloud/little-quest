@@ -55,11 +55,13 @@ npm run android:sync
 npm run android:open
 ```
 
-本机已生成可安装的签名包 `release/little-quest-v0.1.0-local-server.apk`，默认连接当前电脑的 `http://10.118.83.126:8788`。手机连同一个 Wi-Fi 后，直接在手机浏览器打开 `http://10.118.83.126:8788/install.apk` 下载。[GitHub Release 的通用 APK](https://github.com/been-cloud/little-quest/releases/download/v0.1.0/little-quest-v0.1.0-android-harmony4.apk) 不预填服务器地址，适合其他设备下载。打开 APK 安装时，按系统提示允许从当前来源安装。换 Wi-Fi 后，在应用的「注册 / 登录 → 同步服务器设置」修改电脑内网地址。原生版使用手机系统的本地通知安排提醒，应用关闭后仍可由系统发出。实际到达时间受设备通知权限与系统调度影响；当前设置为近似时间提醒。
+本机已生成可安装的签名包 `release/little-quest-v0.1.1-local-server.apk`，默认连接当前电脑的 `http://192.168.43.163:8788`。手机连同一个 Wi-Fi 后，直接在手机浏览器打开 `http://192.168.43.163:8788/install.apk` 下载。[GitHub Release 的通用 APK](https://github.com/been-cloud/little-quest/releases/download/v0.1.1/little-quest-v0.1.1-android-harmony4.apk) 不预填服务器地址，适合其他设备下载。打开 APK 安装时，按系统提示允许从当前来源安装。换 Wi-Fi 后，在应用的「注册 / 登录 → 同步服务器设置」修改电脑内网地址。原生版使用手机系统的本地通知安排提醒，应用关闭后仍可由系统发出。实际到达时间受设备通知权限与系统调度影响；当前设置为近似时间提醒。
 
 电脑端现在通过 `scripts/start-local-server.ps1` 启动。重启电脑后，在 PowerShell 中运行 `powershell -NoProfile -ExecutionPolicy Bypass -File E:\ideasoftware\scripts\start-local-server.ps1`，脚本会自动显示当前地址；手机与电脑需连同一个 Wi-Fi。换网络时再次运行此命令，脚本会更新监听地址。修改服务端代码后可加 `-Restart` 重启。电脑关机或休眠期间，AI、邮箱登录和同步不可用，本机日程仍可查看。局域网 HTTP 没有加密，只在可信的个人 Wi-Fi 或手机热点下登录；之后改用 HTTPS 服务地址即可迁移。
 
 ## 已实现的功能与当前边界
+
+如果手机浏览器仍打不开服务器状态页，在电脑上双击 `enable-phone-access.cmd`，确认 Windows 的管理员弹窗。该脚本仅为当前 Node 进程开放专用网络的 8788 端口，访问范围限定为局域网。随后在手机浏览器重试 `http://电脑IP:8788/api/status`；能看到 `aiEnabled` 再使用 App 登录。
 
 - 直接用随口中文和角色说任务、时间；角色生成可修改的计划草案，确认后才写入日程。
 - 可以按当前角色卡闲聊和提问；普通聊天直接按角色口吻回复，并调用角色背景记忆，只有明确提出任务时才生成计划草案。

@@ -69,6 +69,9 @@ async function serveFile(res, path) {
 const server = createServer(async (req, res) => {
   const path = new URL(req.url || '/', 'http://localhost').pathname;
   const origin = req.headers.origin;
+  if (path === '/api/auth/code') {
+    console.log(`Verification request: ${req.method} from ${req.socket.remoteAddress || 'unknown'}; origin=${origin || 'none'}`);
+  }
   if (origin && allowedOrigins.has(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Vary', 'Origin');
@@ -170,8 +173,8 @@ const server = createServer(async (req, res) => {
     if (req.method !== 'GET') return json(res, 405, { error: 'Method not allowed' });
     if (path === '/install.apk') {
       try {
-        const apk = await readFile(join(root, 'release', 'little-quest-v0.1.0-local-server.apk'));
-        res.writeHead(200, { 'Content-Type': 'application/vnd.android.package-archive', 'Content-Disposition': 'attachment; filename="little-quest-v0.1.0-local-server.apk"', 'Content-Length': apk.length });
+        const apk = await readFile(join(root, 'release', 'little-quest-v0.1.1-local-server.apk'));
+        res.writeHead(200, { 'Content-Type': 'application/vnd.android.package-archive', 'Content-Disposition': 'attachment; filename="little-quest-v0.1.1-local-server.apk"', 'Content-Length': apk.length });
         return res.end(apk);
       } catch { return json(res, 404, { error: '本机安装包尚未构建' }); }
     }

@@ -43,7 +43,7 @@ export default function AccountPanel({ user, syncStatus, busy, onCode, onRegiste
         <form className="account-form" onSubmit={submit}>
           <label>邮箱<input type="email" autoComplete="email" required value={email} onChange={(event) => setEmail(event.target.value)} placeholder="例如：你的 QQ 邮箱" /></label>
           {mode === 'register' && <label>邮箱验证码<div className="account-code-row"><input inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6}" required value={code} onChange={(event) => setCode(event.target.value)} placeholder="6 位验证码" /><button type="button" disabled={busy || !email.trim()} onClick={() => void act(() => onCode(email), '验证码已发出，请查看邮箱')}>发送验证码</button></div></label>}
-          <label>密码<input type="password" autoComplete={mode === 'login' ? 'current-password' : 'new-password'} minLength={8} required value={password} onChange={(event) => setPassword(event.target.value)} placeholder="至少 8 个字符" /></label>
+          <label>密码<input type="password" autoComplete={mode === 'login' ? 'current-password' : 'new-password'} minLength={mode === 'register' ? 8 : undefined} required value={password} onChange={(event) => setPassword(event.target.value)} placeholder={mode === 'register' ? '至少 8 个字符' : '输入密码'} /></label>
           <button className="primary-button full" disabled={busy} type="submit">{mode === 'login' ? <LogIn size={17} /> : <Mail size={17} />}{busy ? '请稍候…' : mode === 'login' ? '登录并恢复数据' : '注册并保存数据'}</button>
         </form>
       </>}

@@ -36,6 +36,10 @@ if ($Foreground) {
 $logDir = Join-Path $project 'server/data'
 New-Item -ItemType Directory -Force $logDir | Out-Null
 $node = (Get-Command node -ErrorAction Stop).Source
+$nodeDirectory = Get-Item -LiteralPath (Split-Path $node -Parent)
+if ($nodeDirectory.LinkType -eq 'SymbolicLink' -and $nodeDirectory.Target) {
+    $node = Join-Path ([string]$nodeDirectory.Target) 'node.exe'
+}
 $process = Start-Process -FilePath $node -ArgumentList 'server/index.mjs' -WorkingDirectory $project -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $logDir 'server.log') -RedirectStandardError (Join-Path $logDir 'server-error.log')
 Start-Sleep -Seconds 2
 if ($process.HasExited) { throw '服务器启动失败。请检查 server/data/server-error.log。' }
