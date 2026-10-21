@@ -1,0 +1,12 @@
+{
+  "name": "小小任务 Little Quest",
+  "short_name": "小小任务",
+  "description": "让喜欢的角色陪你完成每一天的小任务。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f0df",
+  "theme_color": "#172c31",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

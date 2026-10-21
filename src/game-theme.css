@@ -1,0 +1,32 @@
+/* Original farm RPG theme inspired by open source pixel UI patterns. */
+:root{--wood:#815a39;--wood-dark:#553a2c;--paper:#fff7df;--leaf:#315b43;--gold:#f4ca77;background:#ece8d3}
+body{background-color:#ece8d3;background-image:linear-gradient(90deg,#dfe4cf70 1px,transparent 1px),linear-gradient(#dfe4cf70 1px,transparent 1px);background-size:24px 24px}
+.sidebar{background:#345c48;border-right:6px solid #755337;box-shadow:inset -3px 0 #bb9165,5px 0 0 #d9d0ae}
+.brand-icon{border-radius:1px;box-shadow:4px 4px 0 var(--wood-dark)}
+.side-nav button{border-radius:2px}
+.side-nav button:hover,.side-nav button.active{background:#527d5b;box-shadow:inset 3px 0 #f7d78e,3px 3px 0 #214233}
+.topbar{background:#f8efd3;border-bottom:4px solid #a47a4e;box-shadow:0 3px 0 #d1ae78}
+.coin-pill{border:2px solid #a8793b;border-radius:2px;background:#ffe5a0;box-shadow:2px 2px 0 #8c623c}
+.hero-scene{border:4px solid #6e5134;border-radius:2px;box-shadow:inset 0 0 0 4px #cda777,6px 6px 0 #c8bda0;background:#b8dcc4}
+.panel-card,.stat-card,.quest-card,.suggestions,.forge-intro,.companion-aside-top,.journal-stats>div{border:2px solid #b9a37c;border-radius:2px;box-shadow:inset 0 0 0 2px #fff8e5,4px 4px 0 #d1c4a4;background:var(--paper)}
+.forge-intro,.companion-aside-top{background:#dce8d1;border-color:#789879;box-shadow:inset 0 0 0 3px #f3f7dc,5px 5px 0 #bccbad}
+.conversation-card{border:4px solid #806140;border-radius:2px;box-shadow:inset 0 0 0 3px #dbba88,6px 6px 0 #c9bc98}
+.conversation-head{background:#dfebd5;border-bottom:3px solid #a0ba94}
+.conversation-body{background-color:#f8f1db;background-image:linear-gradient(#d8dcbd5c 1px,transparent 1px),linear-gradient(90deg,#d8dcbd5c 1px,transparent 1px);background-size:20px 20px}
+.conversation-compose{background:#f4e7cb;border-top:3px solid #caaa78}
+.message-bubble,.message-row.user .message-bubble{border-radius:2px;box-shadow:3px 3px 0 #d7cfb2}
+.plan-card{border:3px solid #9e7647;border-radius:2px;box-shadow:inset 0 0 0 3px #f5dfad,4px 4px 0 #cfba8f;background:#fff8e8}
+.primary-button,.square-button,.plan-actions button,.timer-presets button,.suggestions button,.chat-starters button{border-radius:2px}
+.primary-button{background:var(--gold);border-color:#765338;box-shadow:4px 4px 0 #765338}
+.primary-button:hover:not(:disabled){box-shadow:2px 2px 0 #765338}
+.quest-check,.category,.step-num,.mode-badge,.chip-row span{border-radius:1px}
+.upload-area{border:2px dashed #8caa89;border-radius:2px;background:#f0f5df;min-height:102px;justify-content:center}
+.upload-area:hover{background:#e6efcf;border-color:#618565}
+.forge-form input,.forge-form textarea,.sample-line textarea,.focus-side select{border:2px solid #b7b89a;border-radius:2px;background:#fffcf0}
+.focus-panel,.journal-banner{border-radius:2px;border:4px solid #795d3d;box-shadow:inset 0 0 0 3px #d4b387,5px 5px 0 #c5b89a}
+.focus-panel{background:repeating-linear-gradient(0deg,#f7f0d9,#f7f0d9 23px,#f1e8cf 24px)}
+.timer-digits{text-shadow:3px 3px 0 #b9d1aa}
+.avatar,.chat-avatar,.message-avatar{border-radius:1px}
+.bottom-nav{background:#f6e6c2;border-top:4px solid #956f47;box-shadow:inset 0 3px #ffe9b5,0 -4px 15px #3a291a21}
+.bottom-nav button.active{color:#315b43;background:#dfedcb;box-shadow:inset 0 -3px #78a075}
+@media(max-width:760px){.topbar{border-bottom-width:3px}.bottom-nav button{border-radius:2px}.conversation-card{box-shadow:3px 3px 0 #c9bc98}}
