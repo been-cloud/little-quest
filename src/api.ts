@@ -55,7 +55,11 @@ export async function distillText(input: { name: string; description: string; di
   onProgress: (done: number, total: number) => void) {
   const { id } = await post<{ id: string }>('/api/distill/jobs', input);
   for (let attempt = 0; attempt < 600; attempt++) {
-    const response = await fetch(`${getApiBaseUrl()}/api/distill/jobs/${id}`, { cache: 'no-store' });
+    const token = getSessionToken();
+    const response = await fetch(`${getApiBaseUrl()}/api/distill/jobs/${id}`, {
+      cache: 'no-store',
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+    });
     const job = await response.json();
     if (!response.ok || job.status === 'error') throw new Error(job.error || '蒸馏失败');
     onProgress(job.progress || 0, job.total || 1);
