@@ -1,4 +1,4 @@
-﻿param([switch]$Foreground)
+﻿param([switch]$Foreground, [switch]$Restart)
 
 $ErrorActionPreference = 'Stop'
 $project = Split-Path -Parent $PSScriptRoot
@@ -9,12 +9,18 @@ $port = 8788
 $url = "http://${address}:$port"
 $listener = Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue | Select-Object -First 1
 if ($listener) {
-    try {
-        $status = Invoke-RestMethod -Uri "$url/api/status" -TimeoutSec 3
-        Write-Output "服务器已经运行：$url"
-        Write-Output "AI: $($status.aiEnabled); 邮箱: $($status.mailEnabled)"
-        exit 0
-    } catch { throw "端口 $port 已被其他程序占用。" }
+    if (-not $Restart -and ($listener.LocalAddress -eq $address -or $listener.LocalAddress -eq '0.0.0.0')) {
+        try {
+            $status = Invoke-RestMethod -Uri "$url/api/status" -TimeoutSec 3
+            Write-Output "服务器已经运行：$url"
+            Write-Output "AI: $($status.aiEnabled); 邮箱: $($status.mailEnabled)"
+            exit 0
+        } catch { }
+    }
+    $owner = Get-CimInstance Win32_Process -Filter "ProcessId=$($listener.OwningProcess)"
+    if ($owner.CommandLine -notmatch 'server/index\.mjs') { throw "端口 $port 已被其他程序占用。" }
+    Stop-Process -Id $listener.OwningProcess
+    Start-Sleep -Seconds 1
 }
 $env:HOST = $address
 $env:PORT = [string]$port
