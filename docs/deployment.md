@@ -10,7 +10,7 @@
 
 运行 `powershell -NoProfile -ExecutionPolicy Bypass -File E:\ideasoftware\scripts\start-local-server.ps1`。脚本从当前 Wi-Fi 自动获取内网 IP，在该 IP 的 8788 端口启动 Node 服务，并强制账号登录后才能调用 AI。当前地址是 `http://10.118.83.126:8788`，换网络后以脚本显示的新地址为准。把手机和电脑连到同一 Wi-Fi，在手机浏览器打开 `http://电脑IP:8788/api/status`；出现 JSON 即连通。若手机无法访问，检查 Wi-Fi 是否开启了设备隔离以及 Windows 防火墙是否允许 Node.js 入站。不要为了测试直接关闭整个防火墙。
 
-本机签名包 `release/little-quest-v0.1.0-local-server.apk` 已预填当前地址；换网络时在「注册 / 登录 → 同步服务器设置」修改。局域网 HTTP 无加密，使用个人 Wi-Fi 或手机热点更合适。若要在不同网络下长期使用，请按下方说明部署 HTTPS 地址，或者后续设置稳定的隧道。
+本机签名包 `release/little-quest-v0.1.0-local-server.apk` 已预填当前地址；手机浏览器可打开 `http://电脑IP:8788/install.apk` 直接下载。换网络时在「注册 / 登录 → 同步服务器设置」修改。局域网 HTTP 无加密，使用个人 Wi-Fi 或手机热点更合适。若要在不同网络下长期使用，请按下方说明部署 HTTPS 地址，或者后续设置稳定的隧道。
 
 ## 服务器配置
 
